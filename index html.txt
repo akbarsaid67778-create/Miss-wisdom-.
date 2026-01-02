@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miss Wisdom</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #3498db;
+    }
+    header {
+      background: #1b4f72;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #21618c;
+      padding: 15px;
+      color: white;
+      text-align: center;
+      font-size: 18px;
+    }
+    section {
+      padding: 20px;
+      background: white;
+      margin: 20px;
+      border-radius: 8px;
+    }
+    input, select, textarea, button {
+      padding: 10px;
+      margin: 8px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2e86c1;
+    }
+    footer {
+      background: #1b4f72;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+    #lessonPage { display: none; background: #ffffff; }
+  </style>
+</head>
+<body><header>
+  <h1>Miss Wisdom</h1>
+  <p>Learning Made Easy – Like a Human Teacher</p>
+</header><nav>
+  🌟 Welcome to Miss Wisdom – Please Sign In 🌟
+</nav><section id="loginPage">
+  <h2>Student Sign In</h2>
+  <form onsubmit="startLesson(event)">
+    <label>Your Name:</label>
+    <input type="text" id="name" required><label>Age:</label>
+<input type="number" id="age" required>
+
+<label>Class:</label>
+<input type="text" id="class" required>
+
+<label>Subject:</label>
+<select id="subject" required>
+  <option value="">Select subject</option>
+  <option>English</option>
+  <option>Math</option>
+  <option>Science</option>
+  <option>Computer</option>
+</select>
+
+<label>Daily Study Time (minutes):</label>
+<input type="number" id="time" required>
+
+<button type="submit">Start Learning</button>
+
+  </form>
+</section><section id="lessonPage">
+  <h2>📘 Your Lesson</h2>
+  <p id="lessonText">
+    Imagine you are learning with a friendly teacher sitting next to you. 
+    For example, if this is Science, think about how you see rain every day. 
+    That rain helps plants grow — this is how science connects to real life.
+  </p>  <h3>Did you understand?</h3>
+  <select id="level">
+    <option value="easy">Easy (like for a child)</option>
+    <option value="medium">Medium</option>
+    <option value="hard">Hard</option>
+  </select><button onclick="changeLevel()">Explain Again</button>
+
+  <h3>📝 Ask a Question or Chapter</h3>
+  <textarea placeholder="Type your question or chapter here..."></textarea><button onclick="aiExplain()">Explain with AI</button>
+
+  <h3>📒 Notes</h3>
+  <p>
+    • Important points written simply<br>
+    • Easy words<br>
+    • Real-life examples
+  </p>  <h3>🧪 Test (Your Level)</h3>
+  <p>Q1: Explain this topic in your own words.</p>
+  <p>Q2: Give one real-life example.</p>
+</section><footer>
+  <p>© 2026 Miss Wisdom</p>
+</footer><script>
+  function startLesson(e) {
+    e.preventDefault();
+    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('lessonPage').style.display = 'block';
+  }
+
+  function changeLevel() {
+    const level = document.getElementById('level').value;
+    const text = document.getElementById('lessonText');
+
+    if (level === 'easy') {
+      text.innerText = "Let's learn very simply 😊. Imagine you are playing and learning at the same time. Real life is our best teacher.";
+    } else if (level === 'medium') {
+      text.innerText = "Now let's learn step by step with examples you see every day, like school and home.";
+    } else {
+      text.innerText = "Let's go deeper into the topic with detailed explanation and logic.";
+    }
+  }
+
+  function aiExplain() {
+    const question = document.querySelector('textarea').value;
+    const level = document.getElementById('level').value;
+    const text = document.getElementById('lessonText');
+
+    if (!question) {
+      alert('Please write a question or chapter first');
+      return;
+    }
+
+    text.innerText = "🤖 Miss Wisdom is thinking...";
+
+    setTimeout(() => {
+      if (level === 'easy') {
+        text.innerText = "😊 Easy explanation (like a human teacher): " + question + " is explained like a story. Imagine it in daily life, just like learning while playing.";
+      } else if (level === 'medium') {
+        text.innerText = "📘 Medium explanation: " + question + " is explained step by step with school and home examples.";
+      } else {
+        text.innerText = "📗 Hard explanation: " + question + " is explained deeply with logic, reasons, and real-world connections.";
+      }
+    }, 1500);
+  }
+</script></body>
+</html>
